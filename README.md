@@ -6,5 +6,5 @@ Quick API that will denies requests w/o a JWT token and updates a user's status
 - [ ] add how to run local
 - [ ] add makefile
 - [ ] add Dockerfile
-- [ ] deploy on Heroku
-- [ ] add actual Auth0 usage
+- [x] deploy on Heroku
+- [x] add actual Auth0 usage
