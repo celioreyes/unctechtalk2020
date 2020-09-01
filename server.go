@@ -25,9 +25,12 @@ type myServer struct {
 func (ms *myServer) StartServer() error {
 	ms.userMoods = make(map[string]Mood)
 	ms.moods = map[int]Mood{
-		1: {ID: 1, Name: "Happy"},
-		2: {ID: 2, Name: "Excited"},
-		3: {ID: 3, Name: "Sad"},
+		1: {MoodID: 1, Name: "I Am Happy"},
+		2: {MoodID: 2, Name: "I Am Excited"},
+		3: {MoodID: 3, Name: "I Am Sad"},
+		4: {MoodID: 4, Name: "I Am Joyful"},
+		5: {MoodID: 5, Name: "I Am Sleepy"},
+		6: {MoodID: 6, Name: "I Am Tearful"},
 	}
 
 	ms.httpServer = &http.Server{
