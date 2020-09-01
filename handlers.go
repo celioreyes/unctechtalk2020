@@ -11,8 +11,8 @@ import (
 
 // Mood structure for a mood
 type Mood struct {
-	ID   int    `json:"id"`
-	Name string `json:"mood"`
+	MoodID int
+	Name   string
 }
 
 func (ms *myServer) handleListMoods(w http.ResponseWriter, r *http.Request) {
@@ -70,7 +70,7 @@ func (ms *myServer) handlePutUserMood(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Make sure valid mood was provided
-	if _, ok := ms.moods[mood.ID]; !ok {
+	if _, ok := ms.moods[mood.MoodID]; !ok {
 		msg := "invalid mood provided"
 		ms.Logger.WithError(errors.New(msg)).Println(msg)
 		w.WriteHeader(http.StatusBadRequest)
