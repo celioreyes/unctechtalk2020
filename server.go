@@ -37,7 +37,7 @@ func (ms *myServer) StartServer() error {
 		Handler:      ms.registerRoutes(),
 	}
 
-	ms.Logger.Printf("server starting on port: %d", ms.Port)
+	ms.Logger.Printf("server starting on port: %s", ms.Port)
 
 	err := ms.httpServer.ListenAndServe()
 	if err != nil && err != http.ErrServerClosed {
