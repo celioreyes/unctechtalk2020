@@ -16,13 +16,15 @@ var (
 func main() {
 	logger = logrus.New()
 
+	port := os.Getenv("PORT")
+
 	verifier := &Verifier{
 		Resource:  os.Getenv("AuthResource"),
 		TenantURL: os.Getenv("AuthTenantURL"),
 	}
 
 	s := myServer{
-		Port:     3000,
+		Port:     port,
 		Verifier: verifier,
 		Logger:   logger,
 	}

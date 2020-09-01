@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -12,7 +13,7 @@ import (
 )
 
 type myServer struct {
-	Port     int
+	Port     string
 	Verifier IVerifier
 	Logger   *logrus.Logger
 
@@ -30,7 +31,7 @@ func (ms *myServer) StartServer() error {
 	}
 
 	ms.httpServer = &http.Server{
-		Addr:         ":3000",
+		Addr:         fmt.Sprintf(":%s", ms.Port),
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 30 * time.Second,
 		Handler:      ms.registerRoutes(),
@@ -52,8 +53,8 @@ func (ms *myServer) GracefullyShutdown(ctx context.Context) error {
 
 func (ms *myServer) registerRoutes() http.Handler {
 	r := chi.NewRouter()
-	// Basic CORS
-	// for more ideas, see: https://developer.github.com/v3/#cross-origin-resource-sharing
+
+	// Basic CORS -- for more ideas, see: https://developer.github.com/v3/#cross-origin-resource-sharing
 	r.Use(cors.Handler(cors.Options{
 		// AllowedOrigins: []string{"https://foo.com"}, // Use this to allow specific origin hosts
 		AllowedOrigins: []string{"*"},
